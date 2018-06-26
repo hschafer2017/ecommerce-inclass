@@ -8,8 +8,9 @@
 <img src="{{MEDIA_URL}}{{product.image}}" width="100px"></img>
 <li>${{product.price}}</li>
 
-<form action='{% url "cart" product.id %}' method="POST">
+<form action='{% url "cart" %}' method="POST">
         {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{ product.id }}"/>
         <button type="submit" class="btn-sm btn-info">Add to Cart</button>
 </form>
 <br>
