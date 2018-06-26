@@ -10,8 +10,8 @@
 
 <form action='{% url "cart" product.id %}' method="POST">
         {% csrf_token %}
-        <button type="submit" class="btn btn-info">Add to Cart</button>
-    </form>
-
+        <button type="submit" class="btn-sm btn-info">Add to Cart</button>
+</form>
+<br>
 {% endfor %}
 {% endblock content %}
