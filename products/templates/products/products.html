@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block content %}
+{% for product in products %}
+<h2>{{product.name}}</h2>
+<p>{{product.description}}</p>
+<img src="{{MEDIA_URL}}{{product.image}}" width="100px"></img>
+<li>${{product.price}}</li>
+
+<form action='{% url "cart" product.id %}' method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-info">Add to Cart</button>
+    </form>
+
+{% endfor %}
+{% endblock content %}
