@@ -33,8 +33,6 @@ def remove_item(request):
     return redirect('view_cart')
 
 
-
-
 def add_to_cart(request):
 
     # Get the product we're adding

@@ -20,7 +20,7 @@
 {% endfor %}
 <p><strong>Grand Total: ${{totals}}</strong></p>
 
-<form action='#' method="POST">
+<form action='{% url "checkout" %}' method="POST">
         {% csrf_token %}
         <button class='btn-sm btn-success'>Checkout</button>
 </form>
