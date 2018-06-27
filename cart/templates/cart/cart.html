@@ -11,10 +11,19 @@
     <li>Quantity: {{p.quantity}}</li> 
     <li>${{p.price}} each</li>
     <li>${{p.total}} total</li>
-    <button class="btn-sm btn-danger">Remove</button>
+    <form action='{% url "remove" %}' method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{ p.product.id }}"/>
+        <button class="btn-sm btn-danger">Remove</button>
+</form>
 </ul>
 {% endfor %}
 <p><strong>Grand Total: ${{totals}}</strong></p>
-<button class='btn-sm btn-success'>Checkout</button>
+
+<form action='#' method="POST">
+        {% csrf_token %}
+        <button class='btn-sm btn-success'>Checkout</button>
+</form>
+
 
 {% endblock content %}
