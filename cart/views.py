@@ -3,12 +3,26 @@ from products.models import Product
 
 # Create your views here - CART.
 def view_cart(request):
-    return render(request, 'cart/cart.html')
+    cart = request.session.get('cart', {})
+    # return { 'cart_items': cart_items, 'total': total }
+    
+    
+    products = []
+    for p in cart:
+        phone = get_object_or_404(Product, pk=p)
+        products.append({
+            'product' : phone,
+            'quantity': cart[p],
+            'price': phone.price,
+            'total': (cart[p] * phone.price)
+        })
+    
+    return render(request, 'cart/cart.html', {'cart': products})
 
 def add_to_cart(request):
 
     # Get the product we're adding
-    id = request.POST['product_id']
+    id = int(request.POST['product_id'])
     products = get_object_or_404(Product, pk=id)
 
     # Get the current cart
