@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-<h2>Items here:</h2>
+<h2>Your cart:</h2>
 
 {% for p in cart %}
 
@@ -18,12 +18,9 @@
 </form>
 </ul>
 {% endfor %}
-<p><strong>Grand Total: ${{totals}}</strong></p>
+<p><strong>Sub-Total: ${{totals}}</strong></p>
 
-<form action='{% url "checkout" %}' method="POST">
-        {% csrf_token %}
-        <button class='btn-sm btn-success'>Checkout</button>
-</form>
+<a href="{% url 'checkout' %}" class='btn-sm btn-success' role='button'>Checkout</a>
 
 
 {% endblock content %}
