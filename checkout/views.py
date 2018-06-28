@@ -32,7 +32,8 @@ def checkout(request):
                 
                 line_item.quantity = quantity
                 line_item.save()
-                
+        
+            # Clear the Cart
             del request.session['cart']
             return HttpResponse("Checkout completed")
     else:
@@ -40,7 +41,7 @@ def checkout(request):
         order_form = OrderForm()
         payment_form = MakePaymentForm()
         context = get_cart_items_and_total(cart)
-        forms = {'order_form': order_form, 'payment_form': payment_form}
+        forms = {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE}
         context.update(forms)
     
     return render(request, "checkout/checkout.html", context)
