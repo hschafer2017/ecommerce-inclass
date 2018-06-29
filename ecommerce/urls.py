@@ -28,7 +28,7 @@ from checkout import urls as checkout_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', get_index),
+    path('', get_index, name = 'home'),
     path('accounts/', include(accounts_urls)),
     path('products/', include(products_urls)),
     path('cart/', include(cart_urls)),
