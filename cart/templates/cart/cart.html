@@ -1,10 +1,12 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-<h2>Your cart:</h2>
+
+{% if cart|length > 0 %}
 
 {% for p in cart %}
 
+<h2>Your cart:</h2>
 <h5>{{p.product}}</h5>
 <ul>
     <img src="{{MEDIA_URL}}{{p.image}}" width="70px" border-radius='50'></img>
@@ -17,10 +19,21 @@
         <button class="btn-sm btn-danger">Remove</button>
 </form>
 </ul>
-{% endfor %}
+
+
+
 <p><strong>Sub-Total: ${{totals}}</strong></p>
 
 <a href="{% url 'checkout' %}" class='btn-sm btn-success' role='button'>Checkout</a>
+
+{% endfor %}
+
+{% else %}
+
+<h1>You should be buying things!</h1>
+
+{% endif %}
+
 
 
 {% endblock content %}
